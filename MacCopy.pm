@@ -1,4 +1,4 @@
-$Tk::MacCopy::VERSION = '1.1';
+$Tk::MacCopy::VERSION = '1.2';
 
 package Tk::MacCopy;
 
@@ -306,9 +306,9 @@ The value of this option can only be set during widget creation.
 
 =over 4
 
-=item B<copy(to, from)>
+=item B<copy(from, to)>
 
-Copies 'to' to 'from'.
+Copies 'from' to 'to'.
 
 =back
 
@@ -357,10 +357,8 @@ Valid subwidget names are listed below.
 There are two phases to a MacCopy operation.  First, we do a pre-scan
 to compute a file count and total byte count using File::Find,
 followed by the actual copy using File::NCopy.  The pre-scan phase is
-blocking - we haven't made any changes to that core module.  On
-the other hand, the actual copy can be rather lengthy, and File::NCopy
-needed attention anyway, so callback hooks with Tk in mind were
-addded.
+blocking - we haven't made any changes to that core module to keep
+Tk events flowing.
 
 We don't verify that there is sufficient room in the destination for
 the copy to succeed.
@@ -369,7 +367,7 @@ the copy to succeed.
 
 sol0@Lehigh.EDU
 
-Copyright (C) 2000 - 2002, Stephen O.Lidie
+Copyright (C) 2000 - 2002, Stephen O. Lidie
 
 This program is free software; you can redistribute it and/or
 modify it under the same terms as Perl itself.
